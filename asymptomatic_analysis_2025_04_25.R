@@ -12,8 +12,7 @@ library(rstanarm)
 library(broom.mixed)
 library(ggplot2)
 library(mgcv)
-library(corrplot)
-library(gridExtra)
+library(patchwork)
 library(data.table)
 
 data <- read.csv('~/Google Drive/My Drive/Subclinical TB/Data/asymptomatic_data.csv')
@@ -273,16 +272,10 @@ p2 <- ggplot(prop_density, aes(x = cell_density, y = QFT_proportion)) +
   facet_wrap(~ prison, labeller = labeller(prison = prison_labels)) +
   theme_minimal(base_size = 12)
 
-# Save Panel
-combined_plot <- arrangeGrob(p1, p2, nrow = 1)
-combined_plot <- grobTree(
-  combined_plot,
-  textGrob("A", x = 0.02, y = 0.94, gp = gpar(fontsize = 18, fontface = "bold")),
-  textGrob("B", x = 0.52, y = 0.94, gp = gpar(fontsize = 18, fontface = "bold"))
-)
-
-ggsave("~/Google Drive/My Drive/Subclinical TB/Results/combined_gams.png", 
-       plot = combined_plot, width = 16, height = 4, dpi = 600)
+combined_plot <- p1 / p2
+ggsave("~/Google Drive/My Drive/Subclinical TB/Results/combined_plot.png",
+       plot = combined_plot,
+       width = 10, height = 8, dpi = 600)
 
 # SAMPLE SIZE ==================================================================
 
