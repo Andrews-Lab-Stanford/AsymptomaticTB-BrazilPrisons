@@ -1,4 +1,4 @@
-# ASYMPTOMATIC TRANSMISSION ANALAYSES             
+# ASYMPTOMATIC TRANSMISSION ANALYSES             
 # User: Esther Jung                                                    
 # Last Updated: April 25, 2025                                  
 
